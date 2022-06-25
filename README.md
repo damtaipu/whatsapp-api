@@ -2,6 +2,7 @@
 Essa é uma simples REST API em NodeJS, estruturada em clean Architecture com vistas ao desacoplamento. O core da aplicação é composto por: 
 
 core/
+
   domain/
   entity/
   repository/
