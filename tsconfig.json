@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                                  
+    "lib": ["ES6"],                                 
+    "module": "commonJS",                                
+    "rootDir": "./src",                                                
+    "allowJs": true,                            
+    "outDir": "./dist",                                   
+    "removeComments": true,                    
+    "esModuleInterop": true,                      
+    "forceConsistentCasingInFileNames": true,            
+    "strict": false,                               
+    "skipLibCheck": true,
+    "baseUrl": ".",    
+    "paths": {
+      "@domain/*" : ["./src/core/domain/*"],
+      "@entity/*" : ["./src/core/entity/*"],
+      "@repository/*" : ["./src/core/repository/*"],
+      "@infra/*" : ["src/infra/*"],
+      "@usecase/*" : ["./src/core/usecase/*"],
+      "@adapter/*" : ["./src/adapter/*"],
+      "@controller/*" : ["./src/controller/*"],
+      "@http/*" : ["./src/http/*"],
+      "@route/*" : ["./src/http/route/*"]
+    }                                
+  },
+  "include": ["src/**/*"]
+}
