@@ -1,11 +1,11 @@
 # Order - NodeJs Clean Architecture
 Essa é uma simples REST API em NodeJS, estruturada em clean Architecture com vistas ao desacoplamento. O core da aplicação é composto por: 
 
-core/
----domain/
----entity/
----repository/
----usecase/
+core/  
+  ---domain/  
+  ---entity/  
+  ---repository/  
+  ---usecase/
  
 Na camada de adpter é possível abstrair o framework podendo ser usado Express, Hapi ou qualuer outro.
  
