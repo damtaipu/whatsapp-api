@@ -4,8 +4,6 @@ import VerifyParamMiddleware from './middleware/validate-param.middleware';
 import OrderController from '@controller/order/order.controller';
 import RouteBaseBlock from '@route/block-baseurl.route';
 
-
-
 export default class App {
 
     private app: express.Application;
@@ -21,6 +19,5 @@ export default class App {
     getOrderId(){
         this.app.get('/teste/:id', VerifyParamMiddleware.checkParam, ExpressAdapter.create(OrderController.getOrder));
     }
-    
 }
 
