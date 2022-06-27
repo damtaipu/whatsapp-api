@@ -20,8 +20,8 @@
       "@usecase/*" : ["./src/core/usecase/*"],
       "@adapter/*" : ["./src/adapter/*"],
       "@controller/*" : ["./src/controller/*"],
-      "@http/*" : ["./src/http/*"],
-      "@route/*" : ["./src/http/route/*"]
+      "@http/*" : ["src/infra/http/*"],
+      "@route/*" : ["src/infra/http/route/*"]
     }                                
   },
   "include": ["src/**/*"]

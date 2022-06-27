@@ -2,22 +2,30 @@ import ExpressAdapter from '@adapter/express.adpter';
 import express from 'express';
 import VerifyParamMiddleware from './middleware/validate-param.middleware';
 import OrderController from '@controller/order/order.controller';
-import RouteBaseBlock from '@route/block-baseurl.route';
+import RouteBaseBlock from '@infra/http/route/block-baseurl.route';
 
 export default class App {
 
     private app: express.Application;
 
-    constructor(app: express.Application){
-        this.app = app;
+    constructor(){
+        this.app = express();
     }
      
-    blockUrlBases(){
+    //Root routes
+    blockRootRoutes(){
         this.app.get(['/', '/teste'], ExpressAdapter.create(RouteBaseBlock.blockUrlBase));
     }
 
-    getOrderId(){
+    // Order API
+    orderRoutes(){
         this.app.get('/teste/:id', VerifyParamMiddleware.checkParam, ExpressAdapter.create(OrderController.getOrder));
+    }
+
+    listen(port: number){
+        this.app.listen(port, () => {
+            console.log(`Serve is up in port ${port}`);
+        });
     }
 }
 

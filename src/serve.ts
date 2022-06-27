@@ -1,12 +1,8 @@
-import express from "express";
-import App from "@http/express";
+import App from "@infra/http/express";
 
-let expressApp = express();
-const routes = new App(expressApp);
+const api = new App();
 
-routes.blockUrlBases();
-routes.getOrderId();
+api.blockRootRoutes();
+api.orderRoutes();
 
-expressApp.listen(3000, () => {
-    console.log("Servidor Online");
-})
+api.listen(3000);
