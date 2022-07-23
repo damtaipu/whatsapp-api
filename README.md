@@ -10,4 +10,7 @@ core/
 Na camada de adpter é possível abstrair o framework podendo ser usado Express, Hapi ou qualuer outro.
  
 Esse projeto foi desenvolvido seguindo os padrões aplicados na live do FullCycle Clean Architecture com [Rodrigo Branas](https://github.com/rodrigobranas) a quem agradeço imensamente pelo conhecimento que tem disseminado à comunidade. Muito Obrigado.
+
+###Setup para esse projeto
+Essse projeto utiliza: Node.js, Typescript, 
  
