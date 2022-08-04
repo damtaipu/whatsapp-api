@@ -29,8 +29,8 @@ export default class App {
         // **
 
         this.httpServer = createServer(this.app);
-        dotenv.config();    
-        
+        dotenv.config();
+
         // Configuracao do Socket.io
         this.io = SocketIo.serverIo(this.httpServer);
 
@@ -43,11 +43,11 @@ export default class App {
         });
         // **
 
-        if(process.env.NODE_ENV === "dev"){
+        if (process.env.NODE_ENV === "dev") {
             console.log(`Server runing in ${process.env.NODE_ENV} mode.`)
         }
 
-        if(process.env.NODE_ENV === "prod"){
+        if (process.env.NODE_ENV === "prod") {
             console.log(`Server runing in ${process.env.NODE_ENV} mode.`)
         }
     }
@@ -69,18 +69,9 @@ export default class App {
         this.app.post('/webhooks', ExpressAdapter.create(WhatsAppPostController.metaWhatsPostAppCallBack));
     }
 
-    listen(socket: boolean) {
-
-        // Para iniciar o servidor com Socket.io
-        if (socket) {
-            this.httpServer.listen(process.env.NODE_PORT, () => {
-                console.log(`Server is up in port ${process.env.NODE_PORT} with SocketI.io`);
-            });
-            return;
-        }
-
-        this.app.listen(process.env.NODE_PORT, () => {
-            console.log(`Serve is up in port ${process.env.NODE_PORT}, sem Socket.io`);
+    listen() {
+        this.httpServer.listen(process.env.NODE_PORT, () => {
+            console.log(`Server is up in port ${process.env.NODE_PORT} with SocketI.io`);
         });
     }
 }
