@@ -1,16 +1,10 @@
-# Order - NodeJs Clean Architecture
-Order é um pequeno projeto de REST API construída com Node.js, estruturada em [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) com o objetivo de dividir o software em camadas proporcionando um desacoplamento do núcleo da aplicação tornando-o o máximo possível, independente de bibliotecas/frameworks. O core da aplicação é composto por: 
+# Integração com WhatsApp Business API
+Projeto de API REST com o objetivo de referenciar a integração com a WhatsApp Business API. O projeto foi desenvolvido em Node.js e Typscript, Express... Estruturado em [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html);
 
-core/  
-  ---domain/  
-  ---entity/  
-  ---repository/  
-  ---usecase/
- 
-Na camada de adpter é possível abstrair o framework podendo ser usado Express, Hapi ou qualuer outro.
- 
-Esse projeto foi desenvolvido seguindo os padrões aplicados na live do FullCycle Clean Architecture com [Rodrigo Branas](https://github.com/rodrigobranas) a quem agradeço imensamente pelo conhecimento que tem disseminado à comunidade. Muito Obrigado.
+Seguindo esse prjeto é possivel conectar e utilizar, a nível de testes, os serviços fornecidos pelo Meta for Developers, especificamente a WhatsApp Business API.
+O processo de cadastro de conta junto ao Meta for Developers não é abordado aqui. Esse é um requisito mandatório para utilizar a API do WhatsApp. [Segue a documentação](https://developers.facebook.com/docs/whatsapp).
 
-###Setup para esse projeto
-Essse projeto utiliza: Node.js, Typescript, 
+### Setup para esse projeto
+O projeto utiliza o Ngrok para expor o localhost. Esse processo é necessário para que seja efetuado o teste do Webhooks. 
+
  
