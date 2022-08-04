@@ -18,7 +18,7 @@
       "@repository/*" : ["./src/core/repository/*"],
       "@infra/*" : ["src/infra/*"],
       "@usecase/*" : ["./src/core/usecase/*"],
-      "@adapter/*" : ["./src/adapter/*"],
+      "@adapter/*" : ["src/adapter/*"],
       "@controller/*" : ["./src/controller/*"],
       "@http/*" : ["src/infra/http/*"],
       "@route/*" : ["src/infra/http/route/*"]

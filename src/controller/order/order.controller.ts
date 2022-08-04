@@ -3,7 +3,7 @@ import OrderRepositoryMemory from "@infra/repository/order/order-repository.memo
 import GetOrderUseCase from "@usecase/order/get-order.usecase";
 
 export default class OrderController {
-    static getOrder(params, body, res, io?) {
+    static getOrder(params, res, io?) {
         let rtn;
         const orderMemory = new OrderRepositoryMemory();
         const getOrder = new GetOrderUseCase(orderMemory);

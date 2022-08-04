@@ -6,4 +6,6 @@ api.blockRootRoutes();
 
 api.orderRoutes();
 
-api.listen(3000, true);
+api.whatsAppRoutes();
+
+api.listen(true);

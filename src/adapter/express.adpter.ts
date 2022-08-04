@@ -6,7 +6,7 @@ export default class ExpressAdapter {
 			res.header("Cache-Control", "no-cache, no-store, must-revalidate");
 			res.header("Pragma", "no-cache");
 
-			const obj = await fn(req.params, req.body, res, io);
+			const obj = await fn(req, res, io);
 			return obj
 		}
 	}

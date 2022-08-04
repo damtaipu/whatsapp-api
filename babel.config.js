@@ -18,9 +18,9 @@ module.exports = {
           '@repository': './src/core/repository',
           '@usecase': './src/core/usecase',
           '@infra': './src/infra',
-          '@adapter/' : './src/adapter/',
-          '@controller/' : './src/controller',
-          '@http/' : './src/http',
+          '@adapter' : './src/adapter',
+          '@controller' : './src/controller',
+          '@http' : './src/http',
           '@route': './src/http/route'
         }
       }]

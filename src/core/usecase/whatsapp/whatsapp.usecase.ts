@@ -1,0 +1,13 @@
+import whatsAppRepository from "@repository/whatsapp/whatsapp-repository";
+
+export default class WhatsAppUseCase {
+    private whatsAppRepository: whatsAppRepository;
+
+    constructor(whatsAppRepository: whatsAppRepository) {
+        this.whatsAppRepository = whatsAppRepository
+    }
+
+    execute(name: string, phoneNumber: string) {
+        return this.whatsAppRepository.postMainMessageWhatsAppApi(name, phoneNumber);
+    }
+}
