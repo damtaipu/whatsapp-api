@@ -1,5 +1,5 @@
-export default interface rtnBaseData {
+export default interface RtnBaseData<T = unknown> {
     code: number;
     message?: string;
-    data: {};
+    data: T;
 }

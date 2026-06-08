@@ -1,30 +1,34 @@
-const production = {
+type EnvironmentVariables = NodeJS.ProcessEnv;
+
+const production: EnvironmentVariables = {
     ...process.env,
     NODE_ENV: process.env.NODE_ENV || 'prod',
 };
 
-const development = {
+const development: EnvironmentVariables = {
     ...process.env,
     NODE_ENV: process.env.NODE_ENV || 'dev',
-    PORT: '3000',
-    Meta_WA_accessToken:'EAAuFNnTgCRYBAPtavD7Jei1RFBj91knmZBoJQzCcJpO0fOapsr6f4Le01Cwjoh0iJKTRSqlPgoMJ5gUcGm84Xn35Q8nJ6qkAmX3mkn7zJ1ZBShtr0zYv3gcHUUdTTi33BTdRYq8zxIfvSFddUNQ2YeEfPFslbFS9x9Qr3YUFWLw60GZAPFZB2ixib12lJrObeBk9qb1QTgZDZD',
-    Meta_WA_SenderPhoneNumberId: '108661195265536',
-    Meta_WA_wabaId: '103513655789849',
-    Meta_WA_VerifyToken: 'MeuTokenWhatssTests2022'
+    PORT: process.env.PORT || '3000',
+    META_WA_API_VERSION: process.env.META_WA_API_VERSION || 'v13.0',
+    META_WA_SENDER_PHONE_NUMBER_ID: process.env.META_WA_SENDER_PHONE_NUMBER_ID || '108661195265536',
+    META_WA_VERIFY_TOKEN: process.env.META_WA_VERIFY_TOKEN || 'myTokenTest',
 };
 
-const fallback = {
+const fallback: EnvironmentVariables = {
     ...process.env,
     NODE_ENV: undefined,
 };
 
-export const setUpEnvironment = (environment): any => {
+export const setUpEnvironment = (environment: string): EnvironmentVariables => {
     console.log(`Execution environment selected is: "${environment}"`);
+
     if (environment === 'prod') {
         return production;
-    } else if (environment === 'dev') {
-        return development;
-    } else {
-        return fallback;
     }
+
+    if (environment === 'dev') {
+        return development;
+    }
+
+    return fallback;
 };

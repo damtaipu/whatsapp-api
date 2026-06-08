@@ -1,15 +1,12 @@
 import OrderDataModel from "@domain/order/order-data.model";
 
+export type OrderStatus = 'aberto' | 'fechado';
+
 export default class OrderEntity {
-    number: number;
-    date: Date;
-    product: Array<OrderDataModel>;
-    status: string;
-    
-    constructor(number: number, date: Date, product: Array<OrderDataModel>, status: string){ 
-        this.number = number;
-        this.date = date;
-        this.product = product;
-        this.status = status;
-    }
+    constructor(
+        public readonly number: number,
+        public readonly date: Date,
+        public readonly product: OrderDataModel[],
+        public readonly status: OrderStatus,
+    ) {}
 }

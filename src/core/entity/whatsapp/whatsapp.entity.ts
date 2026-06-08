@@ -1,82 +1,79 @@
+import { AxiosInstance, AxiosRequestConfig } from "axios";
 
+export interface WhatsAppMessageContext {
+    readonly name: string;
+    readonly phoneNumber: string;
+}
 
 export default class WhatsAppEntity {
-    private url: string;
-    private options: {};
-    private name;
-    private phoneNumber
-    private axios;
-
-    constructor(url: string, option: {}, axios, name?: string, phoneNumber?: string) {
-        this.url = url;
-        this.options = option;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.axios = axios;
-    }
+    constructor(
+        private readonly url: string,
+        private readonly options: AxiosRequestConfig,
+        private readonly httpClient: AxiosInstance,
+        private readonly context: WhatsAppMessageContext,
+    ) {}
 
     async sendMainWhatAppMessage() {
-        const payload = JSON.stringify({
-            "messaging_product": "whatsapp",
-            "recipient_type": "individual",
-            "to": this.phoneNumber,
-            "type": "interactive",
-            "interactive": {
-                "type": "button",
-                "header": {
-                    "type": "text",
-                    "text": `Olá ${this.name}!`
+        const payload = {
+            messaging_product: "whatsapp",
+            recipient_type: "individual",
+            to: this.context.phoneNumber,
+            type: "interactive",
+            interactive: {
+                type: "button",
+                header: {
+                    type: "text",
+                    text: `Olá ${this.context.name}!`,
                 },
-                "body": {
-                    "text": "Esse é um texto de exemplo para testar a integração da API do WhatsApp com Nodejs."
+                body: {
+                    text: "Esse é um texto de exemplo para testar a integração da API do WhatsApp com Nodejs.",
                 },
-                "footer": {
-                    "text": "Aqui vai um exto de rodapé."
+                footer: {
+                    text: "Aqui vai um texto de rodapé.",
                 },
-                "action": {
-                    "buttons": [
+                action: {
+                    buttons: [
                         {
-                            "type": "reply",
-                            "reply": {
-                                "id": "primeiro-botao-id",
-                                "title": "Consultar pedido"
-                            }
+                            type: "reply",
+                            reply: {
+                                id: "primeiro-botao-id",
+                                title: "Consultar pedido",
+                            },
                         },
                         {
-                            "type": "reply",
-                            "reply": {
-                                "id": "segundo-botao-id",
-                                "title": "Consultar resultado"
-                            }
-                        }
-                    ]
-                }
-            }
-        });
+                            type: "reply",
+                            reply: {
+                                id: "segundo-botao-id",
+                                title: "Consultar resultado",
+                            },
+                        },
+                    ],
+                },
+            },
+        };
 
-        try {
-            return await this.axios.post(this.url, payload, this.options);
-        } catch (error) {
-            return await error.response.data;
-        }
+        return this.postMessage(payload);
     }
 
     async searchOrderAndSendMessage() {
-        let number = Math.random();
-        const payload = JSON.stringify({
-            "messaging_product": "whatsapp",
-            "to": this.phoneNumber,
-            "type": "text",
-            "text": {
-                "body": `Seu número é: ${number}`
-            }
-        });
+        const orderNumber = Math.random();
+        const payload = {
+            messaging_product: "whatsapp",
+            to: this.context.phoneNumber,
+            type: "text",
+            text: {
+                body: `Seu número é: ${orderNumber}`,
+            },
+        };
 
+        return this.postMessage(payload);
+    }
 
+    private async postMessage(payload: unknown) {
         try {
-            return await this.axios.post(this.url, payload, this.options);
-        } catch (error) {
-            return await error.response.data;
+            return await this.httpClient.post(this.url, payload, this.options);
+        } catch (error: any) {
+            return error?.response?.data ?? { message: "Falha ao comunicar com a API do WhatsApp" };
         }
     }
 }

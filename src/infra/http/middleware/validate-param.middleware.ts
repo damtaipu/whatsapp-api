@@ -1,9 +1,12 @@
 import { BaseData } from '@entity/baseData/base-data.entity';
-import express from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 export default class VerifyParamMiddleware {
-    static checkParam(req: express.Request, res: express.Response, next: express.NextFunction) {
-        if (isNaN(Number(req.params.id))) return BaseData.sendResponse(500, 'String nao permitido', [], res);
-        next();
+    static checkParam(req: Request, res: Response, next: NextFunction) {
+        if (Number.isNaN(Number(req.params.id))) {
+            return BaseData.sendResponse(400, 'Parâmetro id deve ser numérico', [], res);
+        }
+
+        return next();
     }
 }
