@@ -1,13 +1,15 @@
-import url from 'node:url';
+import { Request, Response } from "express";
 
 export default class WhatsAppCheckWebHookController {
-    static checkWebHooksWhatsApp(req, res, io?) {
+    static checkWebHooksWhatsApp(req: Request, res: Response) {
+        const verifyToken = process.env.META_WA_VERIFY_TOKEN || 'myTokenTest';
+        const receivedToken = req.query['hub.verify_token'];
+        const challenge = req.query['hub.challenge'];
 
-        const urlDataObj: any = url.parse(req.url, true).query;
-        const tk = 'myTokenTest';
+        if (receivedToken === verifyToken) {
+            return res.status(200).send(challenge);
+        }
 
-        if(urlDataObj['hub.verify_token'] === tk){
-            return res.status(200).send(urlDataObj['hub.challenge']);
-        }        
+        return res.status(403).send('Token de verificação inválido.');
     }
 }

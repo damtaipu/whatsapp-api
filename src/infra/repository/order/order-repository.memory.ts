@@ -2,17 +2,16 @@ import OrderEntity from "@entity/order/order.entity";
 import OrderRepository from "@repository/order/order-repository";
 import { Observable, of } from "rxjs";
 
-export default class OrderRepositoryMemory implements OrderRepository{
+export default class OrderRepositoryMemory implements OrderRepository {
+    private readonly products = [{ nome: "Biscoito triunfo", valor: 10.00 }];
 
-    product = [{nome: "Biscoito triunfo", valor: 10.00}];
-    pedidos = [
-        new OrderEntity(200, new Date("July 21, 1983 01:15:00"), this.product, 'aberto'),
-        new OrderEntity(100, new Date("July 21, 1983 01:15:00"), this.product, 'fechado'),
-        new OrderEntity(14, new Date("July 21, 1983 01:15:00"), this.product, 'aberto')
+    private readonly orders = [
+        new OrderEntity(200, new Date("1983-07-21T01:15:00.000Z"), this.products, 'aberto'),
+        new OrderEntity(100, new Date("1983-07-21T01:15:00.000Z"), this.products, 'fechado'),
+        new OrderEntity(14, new Date("1983-07-21T01:15:00.000Z"), this.products, 'aberto'),
     ];
 
-    getOrder(id: number): Observable<OrderEntity> { 
-        return of(this.pedidos.find(r => r.number === Number(id)));
+    getOrder(id: number): Observable<OrderEntity | undefined> {
+        return of(this.orders.find((order) => order.number === Number(id)));
     }
-    
-} 
+}

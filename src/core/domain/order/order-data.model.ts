@@ -1,4 +1,4 @@
-export default interface OrderDataModel{
+export default interface OrderDataModel {
     nome: string;
     valor: number;
 }
